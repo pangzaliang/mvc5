@@ -2,7 +2,6 @@ package z.y.controller;
 
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import z.y.mapper.UserMapper;
 

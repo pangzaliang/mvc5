@@ -27,7 +27,7 @@ public class RestResponseHandler implements ResponseBodyAdvice<Object> {
         if (body instanceof CommonResult) {
             return body;
         }
-
+        // 响应体为ResourceRegion 则不再封装
         if (body instanceof ResourceRegion) {
             return body;
         }

@@ -71,7 +71,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     @Bean("multipartResolver")
     public CommonsMultipartResolver commonsMultipartResolver () {
         CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-        // 最大可上传100MB文件
+        // 最大单次可上传100MB文件
         resolver.setMaxUploadSize(1024 * 1024 * 100);
         // 默认编码为UTF-8
         resolver.setDefaultEncoding(Charset.DEFAULT_CHARSET);
