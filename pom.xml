@@ -22,6 +22,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
+            <!--仅在编译和测试时使用,不与tomcat的起冲突-->
             <scope>provided</scope>
         </dependency>
         <!--webmvc-->
@@ -35,36 +36,33 @@
             <groupId>com.github.shalousun</groupId>
             <artifactId>common-util</artifactId>
             <version>2.1.8</version>
+            <!--排除包-->
             <exclusions>
+                <!--okhttp工具-->
                 <exclusion>
                     <groupId>com.squareup.okhttp3</groupId>
                     <artifactId>okhttp</artifactId>
                 </exclusion>
+                <!--加密解密的工具包-->
                 <exclusion>
                     <groupId>org.bouncycastle</groupId>
                     <artifactId>bcprov-jdk15on</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--JSON-->
+        <!--fastjson-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>2.0.31</version>
         </dependency>
-        <!--文件上传-->
+        <!--文件上传工具-->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.5</version>
         </dependency>
-<!--        &lt;!&ndash;slf4j日志门面&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>2.0.7</version>-->
-<!--        </dependency>-->
-        <!--reload4j日志实际面-->
+        <!--reload4j日志 为slf4j(门面) + reload4j(实面) 的整合包-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-reload4j</artifactId>
@@ -72,7 +70,9 @@
         </dependency>
     </dependencies>
 
+    <!--构建-->
     <build>
+        <!--打包的名称-->
         <finalName>mvc5</finalName>
         <plugins>
             <plugin>
