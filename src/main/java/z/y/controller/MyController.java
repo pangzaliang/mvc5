@@ -2,8 +2,11 @@ package z.y.controller;
 
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import z.y.mapper.UserMapper;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +16,13 @@ import java.util.Map;
 @RestController
 public class MyController {
 
+
+    @Resource
+    private UserMapper userMapper;
+
     @GetMapping("/my")
-    public String index() {
-        return "giao";
+    public Integer index() {
+        return userMapper.CountAll();
     }
 
     @GetMapping("/my1")

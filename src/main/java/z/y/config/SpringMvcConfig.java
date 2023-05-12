@@ -2,6 +2,11 @@ package z.y.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.power.common.constants.Charset;
+import com.zaxxer.hikari.HikariDataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +17,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -23,6 +29,7 @@ import java.util.List;
 @Configuration
 @ComponentScan("z.y.controller")
 @ComponentScan("z.y.config")
+@MapperScan("z.y.mapper")
 public class SpringMvcConfig implements WebMvcConfigurer {
 
     /**
@@ -69,5 +76,31 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         // 默认编码为UTF-8
         resolver.setDefaultEncoding(Charset.DEFAULT_CHARSET);
         return resolver;
+    }
+
+    /**
+     * SQL会话工厂配置
+     * @param dataSource 数据源
+     * @return SqlSessionFactory
+     */
+    @Bean
+    public SqlSessionFactory sqlSessionFactory (@Autowired DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    /**
+     * SQL数据源
+     * @return 数据源
+     */
+    @Bean("dataSource")
+    public DataSource dataSource() {
+        HikariDataSource hikariDataSource = new HikariDataSource();
+        hikariDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/fuck");
+        hikariDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        hikariDataSource.setUsername("root");
+        hikariDataSource.setPassword("root");
+        return hikariDataSource;
     }
 }
