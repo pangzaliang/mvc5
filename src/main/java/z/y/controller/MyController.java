@@ -3,9 +3,6 @@ package z.y.controller;
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;
 import org.springframework.web.bind.annotation.*;
-import z.y.mapper.UserMapper;
-
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,15 +11,6 @@ import java.util.Map;
 
 @RestController
 public class MyController {
-
-
-    @Resource
-    private UserMapper userMapper;
-
-    @GetMapping("/my")
-    public Integer index() {
-        return userMapper.CountAll();
-    }
 
     @GetMapping("/my1")
     public CommonResult<Object> test() {

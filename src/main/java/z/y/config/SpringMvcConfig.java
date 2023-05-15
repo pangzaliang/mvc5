@@ -97,10 +97,8 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     @Bean("dataSource")
     public DataSource dataSource() {
         HikariDataSource hikariDataSource = new HikariDataSource();
-        hikariDataSource.setJdbcUrl("jdbc:mysql://localhost:3306/fuck");
-        hikariDataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        hikariDataSource.setUsername("root");
-        hikariDataSource.setPassword("root");
+        hikariDataSource.setJdbcUrl("jdbc:sqlite:D://java/code/mvc5/src/main/resources/db/Chinook.db");
+        hikariDataSource.setDriverClassName("com.sqlite.JDBC");
         return hikariDataSource;
     }
 }
