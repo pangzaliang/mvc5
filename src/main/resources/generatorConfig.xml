@@ -6,7 +6,7 @@
 <!--逆向生成器配置属性-->
 <generatorConfiguration>
     <!--JDBC驱动包-->
-    <classPathEntry location="D:/java/apache-maven-3.9.1/repository/com/mysql/mysql-connector-j/8.0.33/mysql-connector-j-8.0.33.jar"/>
+    <classPathEntry location="D:/java/apache-maven-3.9.1/repository/org/xerial/sqlite-jdbc/3.41.2.1/sqlite-jdbc-3.41.2.1.jar"/>
     <!--用MyBatis3DynamicSql模式生成代码-->
     <context id="mysqlDynamic" targetRuntime="MyBatis3DynamicSql">
         <!--注释注解解析器-->
@@ -19,7 +19,7 @@
             <property name="useLegacyGeneratedAnnotation" value="true"/>
         </commentGenerator>
         <!--JDBC连接器-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/fuck" userId="root" password="root"/>
+        <jdbcConnection driverClass="org.sqlite.JDBC" connectionURL="jdbc:sqlite:src/main/resources/db/Chinook.db"/>
 
         <!--Java 类型解析器-->
         <javaTypeResolver>
@@ -42,7 +42,7 @@
         </javaClientGenerator>
 
         <!--要逆向的表-->
-        <table tableName="db_user">
+        <table tableName="Artist">
             <domainObjectRenamingRule searchString="db_" replaceString=""/>
         </table>
     </context>

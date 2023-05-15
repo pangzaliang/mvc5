@@ -2,15 +2,44 @@ package z.y.controller;
 
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;
+import org.mybatis.dynamic.sql.render.RenderingStrategies;
+import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.web.bind.annotation.*;
+import z.y.mapper.ArtistDynamicSqlSupport;
+import z.y.mapper.ArtistMapper;
+import z.y.model.Artist;
+
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.mybatis.dynamic.sql.SqlBuilder.select;
+
 
 @RestController
 public class MyController {
+
+    @Resource
+    private ArtistMapper artistMapper;
+
+    @GetMapping("/my")
+    public CommonResult<Object> test222() {
+        Artist artist = artistMapper.selectByPrimaryKey(1).get();
+        Map<String, Object> map = new HashMap<>();
+        map.put("001", artist);
+
+        SelectStatementProvider render = select(ArtistDynamicSqlSupport.artist.allColumns())
+                .from(ArtistDynamicSqlSupport.artist)
+                .build()
+                .render(RenderingStrategies.MYBATIS3);
+        List<Artist> artists = artistMapper.selectMany(render);
+        map.put("002", artists);
+
+
+        return CommonResult.ok(HttpCodeEnum.SUCCESS).addData(map);
+    }
 
     @GetMapping("/my1")
     public CommonResult<Object> test() {
