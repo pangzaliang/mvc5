@@ -98,7 +98,7 @@ public class SpringMvcConfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         HikariDataSource hikariDataSource = new HikariDataSource();
         hikariDataSource.setJdbcUrl("jdbc:sqlite:D://java/code/mvc5/src/main/resources/db/Chinook.db");
-        hikariDataSource.setDriverClassName("com.sqlite.JDBC");
+        hikariDataSource.setDriverClassName("org.sqlite.JDBC");
         return hikariDataSource;
     }
 }
