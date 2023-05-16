@@ -28,4 +28,12 @@ public class Artist {
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Artist{" +
+                "artistid=" + artistid +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
