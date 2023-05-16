@@ -2,7 +2,6 @@ package z.y.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.power.common.constants.Charset;
-import com.power.common.util.UrlUtil;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -11,18 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceRegionHttpMessageConverter;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -30,11 +25,10 @@ import java.util.List;
 /**
  * SpringMVC配置类
  */
-@EnableWebMvc
-@Configuration
-@ComponentScan("z.y.controller")
-@ComponentScan("z.y.config")
-@MapperScan("z.y.mapper")
+@EnableWebMvc //SpringMVC配置类
+@Configuration //Spring配置类
+@ComponentScan({"z.y.controller", "z.y.config"}) // 扫描组件
+@MapperScan("z.y.mapper") //扫描Mapper文件
 public class SpringMvcConfig implements WebMvcConfigurer {
 
     /**
