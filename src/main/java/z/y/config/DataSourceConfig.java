@@ -7,6 +7,9 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -15,6 +18,7 @@ import javax.sql.DataSource;
  */
 @MapperScan("z.y.mapper") //扫描Mapper文件
 @Configuration
+@EnableTransactionManagement // 开启事务管理器
 public class DataSourceConfig {
 
     /**
@@ -39,5 +43,15 @@ public class DataSourceConfig {
         hikariDataSource.setJdbcUrl("jdbc:sqlite:" + getClass().getClassLoader().getResource("db/Chinook.db"));
         hikariDataSource.setDriverClassName("org.sqlite.JDBC");
         return hikariDataSource;
+    }
+
+    /**
+     * 事务管理器
+     * @param dataSource 数据源
+     * @return TransactionManager
+     */
+    @Bean
+    public TransactionManager transactionManager (@Autowired DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 }

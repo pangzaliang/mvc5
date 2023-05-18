@@ -29,7 +29,6 @@
         <sqlite.version>3.41.2.1</sqlite.version>
         <mybatis-dynamic.version>1.5.0</mybatis-dynamic.version>
         <junit.version>5.9.3</junit.version>
-        <aspectj.version>1.9.19</aspectj.version>
     </properties>
 
     <dependencies>
@@ -143,13 +142,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--aspectj切面织入框架-->
+        <!--SpringAOP框架-->
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-            <!--运行时-->
-            <scope>runtime</scope>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
     </dependencies>
