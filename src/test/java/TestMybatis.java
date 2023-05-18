@@ -4,7 +4,12 @@ import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.context.web.WebAppConfiguration;
+import z.y.SpringMvcInit;
+import z.y.config.DataSourceConfig;
+import z.y.config.SpringAOPConfig;
 import z.y.config.SpringMvcConfig;
 import static z.y.mapper.ArtistDynamicSqlSupport.*;
 import z.y.mapper.ArtistMapper;
@@ -16,9 +21,10 @@ import java.util.List;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
-@ExtendWith(SpringExtension.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = SpringMvcConfig.class)
+/**
+ * 使用组合注解SpringJUnitWebConfig(),后面加上配置文件.Spring5新特性
+ */
+@SpringJUnitWebConfig(DataSourceConfig.class)
 public class TestMybatis {
 
     @Resource

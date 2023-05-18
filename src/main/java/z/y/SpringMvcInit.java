@@ -6,7 +6,7 @@ import z.y.config.SpringAOPConfig;
 import z.y.config.SpringMvcConfig;
 
 /**
- * Servlet 容器启动的配置类,用于加载spring的配置类
+ * 使用基于 Java 的 Spring 配置。
  */
 public class SpringMvcInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     /**
