@@ -1,4 +1,4 @@
-package z.y.config;
+package z.y.controller.handler;
 
 import com.power.common.enums.HttpCodeEnum;
 import com.power.common.model.CommonResult;

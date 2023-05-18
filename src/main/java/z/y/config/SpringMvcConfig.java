@@ -2,11 +2,6 @@ package z.y.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.power.common.constants.Charset;
-import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +12,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.sql.DataSource;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,8 +21,7 @@ import java.util.List;
  */
 @EnableWebMvc //SpringMVC配置类
 @Configuration //Spring配置类
-@ComponentScan({"z.y.controller", "z.y.config"}) // 扫描组件
-@MapperScan("z.y.mapper") //扫描Mapper文件
+@ComponentScan({"z.y.controller"}) // 扫描组件
 public class SpringMvcConfig implements WebMvcConfigurer {
 
     /**
@@ -75,29 +68,5 @@ public class SpringMvcConfig implements WebMvcConfigurer {
         // 默认编码为UTF-8
         resolver.setDefaultEncoding(Charset.DEFAULT_CHARSET);
         return resolver;
-    }
-
-    /**
-     * SQL会话工厂配置
-     * @param dataSource 数据源
-     * @return SqlSessionFactory
-     */
-    @Bean
-    public SqlSessionFactory sqlSessionFactory (@Autowired DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        return sqlSessionFactoryBean.getObject();
-    }
-
-    /**
-     * SQL数据源
-     * @return 数据源
-     */
-    @Bean("dataSource")
-    public DataSource dataSource() {
-        HikariDataSource hikariDataSource = new HikariDataSource();
-        hikariDataSource.setJdbcUrl("jdbc:sqlite:" + getClass().getClassLoader().getResource("db/Chinook.db"));
-        hikariDataSource.setDriverClassName("org.sqlite.JDBC");
-        return hikariDataSource;
     }
 }
