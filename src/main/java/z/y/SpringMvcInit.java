@@ -1,6 +1,7 @@
 package z.y;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import z.y.config.CacheConfig;
 import z.y.config.DataSourceConfig;
 import z.y.config.SpringAOPConfig;
 import z.y.config.SpringMvcConfig;
@@ -15,7 +16,7 @@ public class SpringMvcInit extends AbstractAnnotationConfigDispatcherServletInit
      */
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{SpringMvcConfig.class, DataSourceConfig.class, SpringAOPConfig.class};
+        return new Class[]{SpringMvcConfig.class, DataSourceConfig.class, SpringAOPConfig.class, CacheConfig.class};
     }
 
     /**
